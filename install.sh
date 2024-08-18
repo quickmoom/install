@@ -28,7 +28,7 @@ cd
 #(____/(__)(__)(___/(____)\___)  (__)  (_)\_)(_____)\___/(_)\_)(__)(__)(_/\/\_)(___/
 
 echo "installing basic programs"
-yay -S brave-browser freedownloadmanager --noconfirm 
+yay -S brave-browser freedownloadmanager wget --noconfirm 
 sudo pacman -S code unzip flatpak --noconfirm
 
 
@@ -37,7 +37,7 @@ sudo pacman -S code unzip flatpak --noconfirm
 # )   / )(_)(  ) _ < )(__  )(_)(  )  ( 
 #(_)\_)(_____)(____/(____)(_____)(_/\_)   
 
-echo "install roblox? yes or no."
+echo "install roblox? valid options: yes, no."
 read roblox_answer
 if [ "$roblox_answer" = "yes" ]; then
 flatpak install --user -y --noninteractive https://sober.vinegarhq.org/sober.flatpakref
@@ -52,7 +52,7 @@ fi
 #(_) (_) (__) (__)  (_)\_)(____)(__)(__)(_)\_)(____/ 
 
 #Optional installs for hyprland window manager only
-echo "install hyprland rice? yes or no."
+echo "install hyprland rice? valid options: yes, no."
 read hyprland_answer
 if [ "$hyprland_answer" = "yes" ]; then
 
@@ -120,13 +120,40 @@ sudo pacman -S linux-surface linux-surface-headers iptsd linux-firmware-marvell 
 sudo pacman -S linux-surface-secureboot-mok --noconfrim                                                                    
 sudo grub-mkconfig -o /boot/grub/grub.cfg                                                                           
 if [ "$surface_answer" = "no"]
-then echo "alrighty then"                                                                       
-                                      
-                                      
-                                      
+then echo "alrighty then"
 
 
+# ____  __  __  __  __  __      __   ____  _____  ____  ___ 
+#( ___)(  \/  )(  )(  )(  )    /__\ (_  _)(  _  )(  _ \/ __)
+# )__)  )    (  )(__)(  )(__  /(__)\  )(   )(_)(  )   /\__ \
+#(____)(_/\/\_)(______)(____)(__)(__)(__) (_____)(_)\_)(___/
 
+echo "Install emulators? Valid options: yes, lightweight, no."
+read emulator_answer
+echo "Install EmulationStation? Valid options: yes, no."
+read emulationstation_answer
+if [ "$emulator_answer" = "yes" ]; then
+    flatpak install flathub net.rpcs3.RPCS3
+    flatpak install flathub org.ryujinx.Ryujinx
+    flatpak install flathub io.github.lime3ds.Lime3DS
+    flatpak install flathub org.DolphinEmu.dolphin-emu
+    flatpak install flathub info.cemu.Cemu
+elif [ "$emulator_answer" = "lightweight" ]; then
+    flatpak install flathub io.github.lime3ds.Lime3DS
+    flatpak install flathub org.DolphinEmu.dolphin-emu
+elif [ "$emulator_answer" = "no" ]; then
+    echo "Alrighty then."
+fi
+if [ "$emulator_answer" = "yes" ] || [ "$emulator_answer" = "lightweight" ]; then
+    echo "Install path"
+    mkdir .emulation
+fi
+if [ "$emulationstation_answer" = "yes"]
+then 
+cd .emulation
+curl https://gitlab.com/es-de/emulationstation-de/-/package_files/132901118/download --output ES-DEx64.AppImage
+chmod +x ES-DEx64.AppImage
+fi
 
                                                                          
                                                                              
