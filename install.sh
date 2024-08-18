@@ -79,17 +79,19 @@ fi
 # )___/ ) _ (  )(_)(   )(   )(_)(    )__)  )(_) )_)(_   )(   )(_)(  )   /\__ \
 #(__)  (_) (_)(_____) (__) (_____)  (____)(____/(____) (__) (_____)(_)\_)(___/
 
-echo "install photo editors? valid options: gimp, krita, no, both."
+echo "Install photo editors? Valid options: gimp, krita, no, both."
 read photo_editor_answer
-if [ "$photo_editor_answer" = "gimp"]
-then sudo pacman -S gimp --noconfirm
-if [ "$photo_editor_answer" = "krita"]
-then sudo pacman -S krita --noconfirm
-if [ "$photo_editor_answer" = "both"]
-then sudo pacman -S gimp krita --noconfirm
-if [ "$photo_editor_answer" = "no"]
-then echo "alrighty then"
+
+if [ "$photo_editor_answer" = "gimp" ]; then
+    sudo pacman -S gimp --noconfirm
+elif [ "$photo_editor_answer" = "krita" ]; then
+    sudo pacman -S krita --noconfirm
+elif [ "$photo_editor_answer" = "both" ]; then
+    sudo pacman -S gimp krita --noconfirm
+elif [ "$photo_editor_answer" = "no" ]; then
+    echo "Alrighty then."
 fi
+
 
 # _  _  _  _  ____  ____  ____    __   
 #( \( )( \/ )(_  _)(  _ \(_  _)  /__\  
